@@ -131,8 +131,8 @@ app.post('/edit', (req, res)=>{
         res.json({type: "invalid_id"})
     }
 })
-
-app.listen(3000, ()=>{
+var port = process.env.PORT || 3000
+app.listen(port, ()=>{
     MongoClient.connect(url, (err, db)=>{
         if (err) throw err;
         console.log("Connection to datababe is successiful")
