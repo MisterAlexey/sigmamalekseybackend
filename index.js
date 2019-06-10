@@ -58,7 +58,7 @@ app.post('/pay', (reg, res)=>{
     }
 })
 
-app.post('/get_girl', (req, res)=>{
+app.post('/get_worker', (req, res)=>{
     if(ObjectID.isValid(req.body._id)){
         MongoClient.connect(url, (err, db)=>{
             if (err) throw err;
@@ -106,9 +106,9 @@ app.post('/edit', (req, res)=>{
                 if(result){
                     dbo.collection("users").updateOne({_id: ObjectID(req.body._id)}, {$set: {
                         "phone_number": 89131092,
-                        "age": 81,
+                        "stage": 81,
                         "price_hour": 1400,
-                        "price_night": 10000,
+                        "price_day": 10000,
                         "services": [
                             "first",
                             "second",
