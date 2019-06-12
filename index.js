@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
 var MongoClient = require('mongodb').MongoClient;
-// var db;
 var ObjectID = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
-const url = "mongodb://localhost:27017/trollinface73"
+const url = "mongodb://localhost:27017/trollinface73";
+
+
 
 app.use(function(reg, res, next){
     res.header("Access-Control-Allow-Origin", "*");
@@ -109,13 +110,7 @@ app.post('/edit', (req, res)=>{
                         "phone_number": 89131092,
                         "stage": 81,
                         "price_hour": 1400,
-                        "price_day": 10000,
-                        "services": [
-                            "first",
-                            "second",
-                            "third",
-                            "hard"
-                        ]
+                        "price_day": 10000
                     }}, (err, edited_data)=>{
                     if(err) throw err;
                     var user = result;
@@ -134,8 +129,9 @@ app.post('/edit', (req, res)=>{
 })
 var port = process.env.PORT || 3000
 app.listen(port, ()=>{
-    MongoClient.connect(url, (err, db)=>{
+    MongoClient.connect(url,{ useNewUrlParser: true }, (err, db)=>{
         if (err) throw err;
         console.log("Connection to datababe is successiful")
+        var db = db
     })
 })
